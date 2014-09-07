@@ -1,18 +1,30 @@
 
+class HashTable(object):
+    """implements a simple HastTable"""
 
-class hash_table(object):
+    def __init__(self, size=1024):
+        self._list_size = size
+        self._bucket_list = [[] for bucket in xrange(0, size)]
 
-    def __init__(self):
-        self.table = []
+    def hash(self, key):
+        if not isinstance(key, basestring):
+            raise TypeError("key must take a string")
+        sum_ord = 0
+        for letter in key:
+            sum_ord += ord(letter)
+        return sum_ord % self._list_size
 
-    def _hash_function(self, item):
-        """
-        maps an item and the slot in the table
-        where the item belongs. takes any item in collection
-        and returns an integer in the range of slot names,
-        between 0 and m-1.
+    def set(self, key, value):
+        hash = self.hash(key)
+        for item in self._bucket_list[hash]:
+            if item[0] == key:
+                item[1] = value
+                return
+        self._bucket_list[hash].append([key, value])
 
-        this hash function takes an item and divides it by
-        the table size, returning the remainder as its hash value
-        """
-        hash_value = item % len(self.table)
+    def get(self, key):
+        hash = self.hash(key)
+        for item in self._bucket_list[hash]:
+            if item[0] == key:
+                return item[1]
+        raise KeyError("key not found in hash table")
