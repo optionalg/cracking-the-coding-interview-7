@@ -4,7 +4,6 @@ def radix_sort(uList):
     sorting = True
     m = 10
     n = 1
-    calls = 0
     while sorting:
         buckets = [[] for x in range(10)]
         for i in uList:
@@ -21,5 +20,4 @@ def radix_sort(uList):
                     uList.append(x)
             m *= 10
             n *= 10
-            calls +=1
     return uList
