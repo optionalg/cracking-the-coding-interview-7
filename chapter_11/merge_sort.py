@@ -1,3 +1,4 @@
+# runtime n * log(n)
 def merge_sort(uList):
     if len(uList) <= 1:
         return uList
