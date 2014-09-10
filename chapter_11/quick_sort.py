@@ -18,5 +18,4 @@ def quick_sort(uList, start, end):
         p_index = _partition(uList, start, end)
         quick_sort(uList, start, (p_index-1))
         quick_sort(uList, (p_index+1), end)
-    print uList
     return uList
