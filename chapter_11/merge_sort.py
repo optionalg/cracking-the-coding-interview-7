@@ -7,8 +7,6 @@ def merge_sort(uList):
         left.append(n)
     for n in uList[middle:]:
         right.append(n)
-    print left
-    print right
     left = merge_sort(left)
     right = merge_sort(right)
     return _merge(left, right, uList)
